@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 
 import fr.phenix333.logger.MyLogger;
 
+/*
+ * Service class responsible for executing a command and handling its input and output.
+ * 
+ * @author Colin de Seroux
+ */
 @Service
 public class ExecuteCommand {
 
@@ -23,6 +28,9 @@ public class ExecuteCommand {
 
 	private OutputStream processInput;
 
+	/**
+	 * Initialize the service and set up the MQTT publisher.
+	 */
 	public void executeCommand() {
 		L.function("Lance la commande pour le projet");
 
@@ -56,6 +64,11 @@ public class ExecuteCommand {
 		}
 	}
 
+	/**
+	 * Send a message to the process's input stream.
+	 *
+	 * @param message -> String : the message to send
+	 */
 	public void sendMessageToProcess(String message) {
 		try {
 			if (this.processInput != null) {

@@ -10,6 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.phenix333.ai.game.programming.service.MqttSubscribe;
 import fr.phenix333.logger.MyLogger;
 
+/*
+ * Main class for the MQTT application.
+ * This class is responsible for starting the Spring Boot application and initializing the MQTT subscription.
+ * It also handles the deletion of any existing Paho MQTT lock files to avoid conflicts.
+ * 
+ * @author Colin de Seroux
+ */
 @SpringBootApplication
 public class AiGameProgrammingMqttApplication implements CommandLineRunner {
 

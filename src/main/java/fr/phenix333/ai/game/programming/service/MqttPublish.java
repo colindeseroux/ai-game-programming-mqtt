@@ -11,6 +11,12 @@ import org.springframework.stereotype.Service;
 
 import fr.phenix333.logger.MyLogger;
 
+/**
+ * Service class responsible for publishing messages to an MQTT broker. This
+ * class handles the connection to the broker and the publishing of messages.
+ * 
+ * @author Colin de Seroux
+ */
 @Service
 public class MqttPublish {
 
@@ -31,7 +37,7 @@ public class MqttPublish {
 	private MqttClient client;
 
 	/**
-	 * Initialise le mqttPublish pour pouvoir le réutiliser plus tard
+	 * Initializes mqttPublish for later use
 	 */
 	public void mqttPublish() {
 		L.function("Initialise le mqttPublish pour pouvoir le reutiliser plus tard");
@@ -46,21 +52,20 @@ public class MqttPublish {
 			MqttConnectOptions connOpts = new MqttConnectOptions();
 			connOpts.setCleanSession(true);
 
-			client.connect(connOpts);
+			this.client.connect(connOpts);
 		} catch (MqttException e) {
 			L.error("Une erreur MQTT est remontee", e);
 
-			// Je pars du principe que vue que le projet se base sur MQTT si la
-			// fonction pour envoyer un message ne fonctionne plus le projet ne peux
-			// fonctionner
+			// I assume that since the project is based on MQTT, if the function for sending
+			// a message no longer works, the project cannot function.
 			System.exit(-1);
 		}
 	}
 
 	/**
-	 * Envoi un message sur un topic spécifique
+	 * Send a message on a specific topic
 	 *
-	 * @param theMessage -> String : le message à envoyer
+	 * @param theMessage -> String : the message to send
 	 */
 	public void publish(String theMessage) {
 		L.function("Envoi un message sur un topic specifique | message : {}", theMessage);
@@ -72,9 +77,8 @@ public class MqttPublish {
 		} catch (MqttException e) {
 			L.error("Une erreur MQTT est remontee", e);
 
-			// Je pars du principe que vue que le projet se base sur MQTT si la
-			// fonction pour envoyer un message ne fonctionne plus le projet ne peux
-			// fonctionner
+			// I assume that since the project is based on MQTT, if the function for sending
+			// a message no longer works, the project cannot function.
 			System.exit(-1);
 		}
 

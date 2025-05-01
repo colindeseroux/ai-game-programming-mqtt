@@ -13,6 +13,13 @@ import org.springframework.stereotype.Service;
 
 import fr.phenix333.logger.MyLogger;
 
+/**
+ * Service class responsible for subscribing to an MQTT broker and handling
+ * incoming messages. This class implements the MqttCallback interface to
+ * receive messages from the broker.
+ * 
+ * @author Colin de Seroux
+ */
 @Service
 public class MqttSubscribe implements MqttCallback {
 
@@ -34,8 +41,7 @@ public class MqttSubscribe implements MqttCallback {
 	private String mqttOpponent;
 
 	/**
-	 * Initialise les variables pour la réception de messages et de s'inscrire au
-	 * topic
+	 * Initializes variables for receiving messages and subscribing to topics
 	 */
 	public void subscribeMqtt() {
 		L.function("Initialise les variables pour la reception de messages et de s'inscrire au topic");

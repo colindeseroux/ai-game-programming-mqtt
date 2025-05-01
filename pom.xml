@@ -16,7 +16,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ai-game-programming-mqtt</name>
 	<description>Liaison MQTT pour AI game programming</description>
-	<url>https://colindeseroux.fr</url>
 	
 	<developers>
 		<developer>
