@@ -8,6 +8,8 @@ You can take inspiration from this and implement it directly in your code to sav
 
 Java 17
 
+---
+
 ### To launch locally
 
 #### Logger
@@ -21,6 +23,8 @@ mvn install:install-file -Dfile='src/main/libs/logger-0.0.1-SNAPSHOT.jar' -Dgrou
 ```
 Run as you like from the command line or ide
 ```
+
+---
 
 ### To launch the .jar
 
@@ -40,7 +44,14 @@ All you have to do is send a message on the broker to **_awale/<mqtt.user>_** fo
 
 You can either launch your code and wait for the message you're player 1 so start, or the other way round you're player 2 and wait for your opponent's move.
 
+#### Debug
+
+All logs are stored in files in Logs.
+If you want to see your error output, go directly to Logs/debug.log; it will be all lines marked **_DEBUG ExecuteCommand lambda$executeCommand$1 -> YOUR DEBUG :_**.
+
 <br>
 <br>
+
+---
 
 # Tested in Java / Jar / Python / C++

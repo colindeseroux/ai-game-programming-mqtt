@@ -44,6 +44,7 @@ public class ExecuteCommand {
 
 			this.processInput = process.getOutputStream();
 
+			// Thread to read standard output
 			new Thread(() -> {
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
 					String line;
@@ -53,6 +54,22 @@ public class ExecuteCommand {
 					}
 				} catch (Exception e) {
 					L.error("Error reading process output", e);
+
+					System.exit(-1);
+				}
+			}).start();
+
+			// Thread to read error output (for your logging)
+			// This is useful for debugging and understanding what the process is doing
+			new Thread(() -> {
+				try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
+					String line;
+
+					while ((line = errorReader.readLine()) != null) {
+						L.debug("YOUR DEBUG : {}", line);
+					}
+				} catch (Exception e) {
+					L.error("Error reading process error output", e);
 
 					System.exit(-1);
 				}
