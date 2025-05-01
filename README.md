@@ -1,4 +1,4 @@
-# AI gamme programming MQTT
+# AI game programming MQTT
 
 The aim of this project is just to create a wrapper so that we can use mqtt without having to implement it in the AI game programming course. This will avoid having to play every move in the game by hand and fully automate the games and run hundreds of simulations. To do this, the wrapper simply reads the standard output of the executed code and sends it to the mqtt broker, then writes what it receives to the standard input.
 
