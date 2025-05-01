@@ -33,7 +33,7 @@ public class AiGameProgrammingMqttApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		L.function("Lancement du code principal");
+		L.function("Launching the main code");
 
 		this.deletePaho();
 
@@ -41,7 +41,7 @@ public class AiGameProgrammingMqttApplication implements CommandLineRunner {
 	}
 
 	private void deletePaho() {
-		L.debug("Supression des dossiers paho (MQTT)");
+		L.debug("Paho folder suppression (MQTT)");
 
 		File[] fichiers = new File(System.getProperty("user.dir")).listFiles();
 

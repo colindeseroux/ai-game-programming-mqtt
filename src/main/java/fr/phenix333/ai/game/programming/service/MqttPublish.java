@@ -40,7 +40,7 @@ public class MqttPublish {
 	 * Initializes mqttPublish for later use
 	 */
 	public void mqttPublish() {
-		L.function("Initialise le mqttPublish pour pouvoir le reutiliser plus tard");
+		L.function("Initialize mqttPublish for later use");
 
 		String broker = String.format("tcp://%s:%s", this.mqttHost, this.mqttPort);
 
@@ -54,7 +54,7 @@ public class MqttPublish {
 
 			this.client.connect(connOpts);
 		} catch (MqttException e) {
-			L.error("Une erreur MQTT est remontee", e);
+			L.error("An MQTT error has occurred", e);
 
 			// I assume that since the project is based on MQTT, if the function for sending
 			// a message no longer works, the project cannot function.
@@ -68,21 +68,21 @@ public class MqttPublish {
 	 * @param theMessage -> String : the message to send
 	 */
 	public void publish(String theMessage) {
-		L.function("Envoi un message sur un topic specifique | message : {}", theMessage);
+		L.function("Send a message on a specific topic | message : {}", theMessage);
 
 		MqttMessage message = new MqttMessage(theMessage.getBytes());
 
 		try {
 			this.client.publish(String.format("awale/%s", this.mqttOpponent), message);
 		} catch (MqttException e) {
-			L.error("Une erreur MQTT est remontee", e);
+			L.error("An MQTT error has occurred", e);
 
 			// I assume that since the project is based on MQTT, if the function for sending
 			// a message no longer works, the project cannot function.
 			System.exit(-1);
 		}
 
-		L.info("Nouveau message envoye : {}", theMessage);
+		L.info("New message sent : {}", theMessage);
 	}
 
 }

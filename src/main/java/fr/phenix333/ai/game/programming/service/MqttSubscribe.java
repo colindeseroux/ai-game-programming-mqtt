@@ -44,13 +44,13 @@ public class MqttSubscribe implements MqttCallback {
 	 * Initializes variables for receiving messages and subscribing to topics
 	 */
 	public void subscribeMqtt() {
-		L.function("Initialise les variables pour la reception de messages et de s'inscrire au topic");
+		L.function("Initialize variables for receiving messages and subscribing to topics");
 
-		L.info("Nouvelle partie : {} VS {}", this.mqttUser, this.mqttOpponent);
+		L.info("New part : {} VS {}", this.mqttUser, this.mqttOpponent);
 
 		String broker = String.format("tcp://%s:%s", this.mqttHost, this.mqttPort);
 
-		L.info("Broker mqtt : {}", broker);
+		L.info("MQTT broker : {}", broker);
 
 		try {
 			MqttClient client = new MqttClient(broker, MqttAsyncClient.generateClientId());
@@ -62,7 +62,7 @@ public class MqttSubscribe implements MqttCallback {
 			client.setCallback(this);
 			client.subscribe(String.format("awale/%s", this.mqttUser));
 		} catch (MqttException e) {
-			L.error("Une erreur MQTT est remontee", e);
+			L.error("An MQTT error has occurred", e);
 
 			// Je pars du principe que vue que le projet se base sur MQTT si la
 			// fonction pour recevoir un message ne fonctionne plus le projet ne peux
@@ -75,14 +75,14 @@ public class MqttSubscribe implements MqttCallback {
 
 	@Override
 	public void connectionLost(Throwable cause) {
-		L.error("Connection perdue");
+		L.error("Lost connection");
 
 		System.exit(-1);
 	}
 
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
-		L.info("Nouveau message arrive : {}", message.toString());
+		L.info("New message arrives : {}", message.toString());
 
 		this.executeCommand.sendMessageToProcess(message.toString());
 	}

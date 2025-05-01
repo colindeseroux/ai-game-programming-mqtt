@@ -32,11 +32,11 @@ public class ExecuteCommand {
 	 * Initialize the service and set up the MQTT publisher.
 	 */
 	public void executeCommand() {
-		L.function("Lance la commande pour le projet");
+		L.function("Starts the command for the project");
 
 		this.mqttPublish.mqttPublish();
 
-		L.info("La commande a lancer : {}", this.command);
+		L.info("The command to launch : {}", this.command);
 
 		try {
 			ProcessBuilder builder = new ProcessBuilder(this.command.split(" "));
@@ -52,13 +52,13 @@ public class ExecuteCommand {
 						this.mqttPublish.publish(line);
 					}
 				} catch (Exception e) {
-					L.error("Erreur lors de la lecture de la sortie du processus", e);
+					L.error("Error reading process output", e);
 
 					System.exit(-1);
 				}
 			}).start();
 		} catch (Exception e) {
-			L.error("Une exception est remontee", e);
+			L.error("An exception has been raised", e);
 
 			System.exit(-1);
 		}
@@ -75,10 +75,10 @@ public class ExecuteCommand {
 				this.processInput.write((message + "\n").getBytes());
 				this.processInput.flush();
 			} else {
-				L.error("Le processus n'est pas encore démarré ou le flux d'entrée est null");
+				L.error("Process not yet started or input stream null");
 			}
 		} catch (Exception e) {
-			L.error("Erreur lors de l'envoi du message au processus", e);
+			L.error("Error sending message to process", e);
 
 			System.exit(-1);
 		}
